@@ -1,0 +1,6 @@
+rootProject.name = 'study'
+include '토비의스프링'
+include '이펙티브자바'
+include 'demo'
+include 'designPattern'
+

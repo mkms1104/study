@@ -1,0 +1,9 @@
+dependencies {
+    implementation 'com.h2database:h2:2.1.210'
+    implementation 'org.springframework:spring-core:5.3.10'
+    implementation 'org.springframework:spring-context:5.3.10'
+    implementation 'org.springframework:spring-beans:5.3.10'
+    implementation 'org.springframework:spring-expression:5.3.10'
+    implementation 'org.springframework:spring-jdbc:5.3.10'
+
+}
