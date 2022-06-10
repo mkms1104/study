@@ -1,19 +1,32 @@
 spring:
   datasource:
     driver-class-name: org.h2.Driver
-    url: jdbc:h2:tcp://localhost/~/demo
+    url: jdbc:h2:tcp://localhost/~/study
     username: sa
-    password:
 
   jpa:
     hibernate:
-      ddl-auto: none
+      ddl-auto: create
+
     properties:
       hibernate:
         show_sql: true
         format_sql: true
 
-levellogging:
-  level:
-    org.hibernate.SQL: debug
+  redis:
+    lettuce:
+      pool:
+        max-active: 8 # default
+    # host: clustercfg.redis-public-test.sytn5f.memorydb.ap-northeast-2.amazonaws.com
+    port: 6379
 
+logging:
+  level:
+    com.example.study: debug
+    # io.lettuce.core: debug
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, beans, info
