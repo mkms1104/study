@@ -1,3 +1,5 @@
+package ch01;
+
 public class User {
     String id;
     String name;

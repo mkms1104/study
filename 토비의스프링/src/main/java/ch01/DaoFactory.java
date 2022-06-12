@@ -1,3 +1,5 @@
+package ch01;
+
 import org.h2.Driver;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

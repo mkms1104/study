@@ -5,4 +5,5 @@ dependencies {
     implementation 'org.springframework:spring-beans:5.3.10'
     implementation 'org.springframework:spring-expression:5.3.10'
     implementation 'org.springframework:spring-jdbc:5.3.10'
+    testImplementation 'junit:junit:4.13.1'
 }
