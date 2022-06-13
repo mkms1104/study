@@ -13,6 +13,10 @@ group = "com.example"
 version = "0.0.1-SNAPSHOT"
 java.sourceCompatibility = JavaVersion.VERSION_11
 
+repositories {
+    mavenCentral()
+}
+
 dependencies {
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
@@ -23,6 +27,7 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
     implementation("org.springframework.boot:spring-boot-starter-data-redis")
     implementation("org.springframework.boot:spring-boot-starter-actuator")
+    implementation("org.ngrinder:ngrinder-groovy:3.5.5")
 
     runtimeOnly("com.h2database:h2")
     implementation("org.mapstruct:mapstruct:1.4.2.Final")

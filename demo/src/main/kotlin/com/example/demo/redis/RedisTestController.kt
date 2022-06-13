@@ -5,29 +5,38 @@ import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
+import java.util.*
+
 
 @RestController
-@RequestMapping("redis")
+@RequestMapping("endpoint")
 class RedisTestController(
     val redisTemplate: RedisTemplate<String, Any>
 ) {
-
-    @PostMapping("save")
-    fun save() {
-        val opsForValue = redisTemplate.opsForValue()
-        opsForValue.set("name", "mskim")
+    @GetMapping("ok")
+    fun ok(): String {
+        return "ok"
     }
 
-    @GetMapping("list")
-    fun list() {
+    @GetMapping("save")
+    fun save() {
         val opsForValue = redisTemplate.opsForValue()
-        opsForValue.get("name")
 
+        val id = createId()
+        opsForValue.set("user:$id:age", 30)
+        opsForValue.set("user:$id:name", "mskim")
     }
 
     @GetMapping("get")
-    fun get() {
+    fun get(): Any {
         val opsForValue = redisTemplate.opsForValue()
-        opsForValue.get("name")
+
+        val id = createId()
+        return opsForValue.get("user:$id:age") ?: 0L
+    }
+
+    private fun createId(): String {
+        val random = SplittableRandom()
+        return random.nextInt(1, 1000000000).toString()
     }
 }

@@ -1,3 +1,14 @@
+plugins {
+    id 'java'
+}
+
+group 'org.example'
+version 'unspecified'
+
+repositories {
+    mavenCentral()
+}
+
 dependencies {
     implementation 'com.h2database:h2:2.1.210'
     implementation 'org.springframework:spring-core:5.3.10'
@@ -6,4 +17,11 @@ dependencies {
     implementation 'org.springframework:spring-expression:5.3.10'
     implementation 'org.springframework:spring-jdbc:5.3.10'
     testImplementation 'junit:junit:4.13.1'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.2'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.2'
 }
+
+test {
+    useJUnitPlatform()
+}
+

@@ -1,8 +1,8 @@
 spring:
-  datasource:
-    driver-class-name: org.h2.Driver
-    url: jdbc:h2:tcp://localhost/~/study
-    username: sa
+   datasource:
+     driver-class-name: org.h2.Driver
+     url: jdbc:h2:tcp://localhost/~/study
+     username: sa
 
   jpa:
     hibernate:
@@ -22,7 +22,7 @@ spring:
 
 logging:
   level:
-    com.example.study: debug
+    com.example.demo: debug
     # io.lettuce.core: debug
 
 management:
