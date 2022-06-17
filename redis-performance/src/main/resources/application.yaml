@@ -1,0 +1,36 @@
+spring:
+  profiles:
+    active: local
+    include: lettuce-client
+
+  redis:
+    lettuce:
+      pool:
+        max-active: 8 # default
+    port: 6379
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, beans, info
+
+logging:
+  level:
+    com.example.demo: debug
+
+---
+
+spring:
+  profiles: local
+
+  redis:
+    host: localhost
+
+---
+
+spring:
+  profiles: cloud
+
+  redis:
+    host: test-cluster.sytn5f.ng.0001.apn2.cache.amazonaws.com
