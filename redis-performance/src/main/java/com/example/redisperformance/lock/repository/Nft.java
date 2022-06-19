@@ -1,4 +1,4 @@
-package com.example.redisperformance.lock;
+package com.example.redisperformance.lock.repository;
 
 import lombok.*;
 import org.springframework.data.annotation.Id;
