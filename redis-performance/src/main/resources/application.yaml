@@ -1,6 +1,6 @@
 spring:
   profiles:
-    active: local
+    active: cloud
     include: lettuce-client
 
 management:
@@ -30,4 +30,4 @@ spring:
   profiles: cloud
 
   redis:
-    host: test-cluster.sytn5f.ng.0001.apn2.cache.amazonaws.com
+    host: clustercfg.test-memorydb.sytn5f.memorydb.ap-northeast-2.amazonaws.com

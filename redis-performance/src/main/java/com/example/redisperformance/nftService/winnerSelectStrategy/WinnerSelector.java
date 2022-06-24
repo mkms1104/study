@@ -1,17 +1,19 @@
-package com.example.redisperformance.lock.nftCounterStrategy;
+package com.example.redisperformance.nftService.winnerSelectStrategy;
 
-import com.example.redisperformance.lock.NftGeneratorUtil;
+import com.example.redisperformance.nftService.NftGeneratorUtil;
 import org.redisson.api.RAtomicLong;
 import org.redisson.api.RList;
 
 public interface WinnerSelector {
-    void winnerSelect(String userId, Long pickNumber);
+    Long PICK_NUMBER = 10L;
 
-    default void defaultWinnerSelector(NftGeneratorUtil nftGeneratorUtil, String userId, Long pickNumber) {
+    void winnerSelect(String userId);
+
+    default void defaultWinnerSelector(NftGeneratorUtil nftGeneratorUtil, String userId) {
         RAtomicLong rPublishNumber = nftGeneratorUtil.rPublishNumber();
         long publishNumber = rPublishNumber.get();
 
-        if(pickNumber.equals(publishNumber)) {
+        if(PICK_NUMBER.equals(publishNumber)) {
             RList<String> winnerList = nftGeneratorUtil.rWinnerList();
             winnerList.add(userId);
         }

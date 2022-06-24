@@ -1,6 +1,6 @@
-package com.example.redisperformance.lock;
+package com.example.redisperformance.nftService;
 
-import com.example.redisperformance.lock.nftCounterStrategy.WinnerSelector;
+import com.example.redisperformance.nftService.winnerSelectStrategy.WinnerSelector;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.RandomStringUtils;
@@ -15,10 +15,12 @@ import java.util.Objects;
 public class NftGenerator {
     private final WinnerSelector winnerSelector;
     private final NftGeneratorUtil nftGeneratorUtil;
-    private final Long PICK_NUMBER = 10L;
 
     public void load(Long pubCnt) {
+        // NFT 발행 수 0 초기화
         nftGeneratorUtil.rPublishNumber().set(0);
+
+        // NFT N개 생성 후 큐에 저장
         RQueue<String> generatedNftAddresses = nftGeneratorUtil.rNftQueue();
         for (int i = 0; i < pubCnt; i++) {
             String nftAddress = RandomStringUtils.randomAlphanumeric(7);
@@ -30,8 +32,7 @@ public class NftGenerator {
         String genNft = nftGeneratorUtil.rNftQueue().poll();
         if(Objects.isNull(genNft)) return null; // 모두 발행되었다.
 
-        winnerSelector.winnerSelect(userId, PICK_NUMBER);
-        Thread.sleep(3000L);
+        winnerSelector.winnerSelect(userId);
         return genNft;
     }
 

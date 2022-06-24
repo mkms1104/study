@@ -1,9 +1,9 @@
 package com.example.redisperformance.config;
 
-import com.example.redisperformance.lock.NftGeneratorUtil;
-import com.example.redisperformance.lock.nftCounterStrategy.DefaultWinnerSelectorStrategy;
-import com.example.redisperformance.lock.nftCounterStrategy.LockWinnerSelectorStrategy;
-import com.example.redisperformance.lock.nftCounterStrategy.WinnerSelector;
+import com.example.redisperformance.nftService.NftGeneratorUtil;
+import com.example.redisperformance.nftService.winnerSelectStrategy.LockWinnerSelectorStrategy;
+import com.example.redisperformance.nftService.winnerSelectStrategy.SyncWinnerSelectorStrategy;
+import com.example.redisperformance.nftService.winnerSelectStrategy.WinnerSelector;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
@@ -27,6 +27,6 @@ public class RedisConfig {
 
     @Bean
     public WinnerSelector winnerSelector(NftGeneratorUtil nftGeneratorUtil) {
-        return new LockWinnerSelectorStrategy(nftGeneratorUtil);
+        return new SyncWinnerSelectorStrategy(nftGeneratorUtil);
     }
 }

@@ -1,4 +1,4 @@
-package com.example.redisperformance.lock.repository;
+package com.example.redisperformance.nftService.repository;
 
 import lombok.*;
 import org.springframework.data.annotation.Id;

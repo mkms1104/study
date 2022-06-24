@@ -5,7 +5,7 @@ plugins {
 }
 
 group = 'com.lim'
-version = '0.0.1-SNAPSHOT'
+version = '0.0.2-SNAPSHOT'
 sourceCompatibility = '11'
 
 repositories {
@@ -17,7 +17,10 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-data-redis'
     implementation 'org.springframework.boot:spring-boot-starter-web'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
-    implementation 'org.projectlombok:lombok'
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+    testCompileOnly 'org.projectlombok:lombok'
+    testAnnotationProcessor 'org.projectlombok:lombok'
     implementation 'org.apache.commons:commons-pool2:2.11.1'
     implementation 'org.redisson:redisson-spring-boot-starter:3.17.3'
     implementation 'org.apache.commons:commons-lang3:3.12.0'
