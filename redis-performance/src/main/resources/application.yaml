@@ -1,7 +1,6 @@
 spring:
   profiles:
     active: cloud
-    include: lettuce-client
 
 management:
   endpoints:
@@ -12,6 +11,8 @@ management:
 logging:
   level:
     com.example.demo: debug
+    org.redisson : trace
+    io.lettuce: trace
 
 nft:
   name: scam
@@ -28,6 +29,7 @@ spring:
 
 spring:
   profiles: cloud
-
   redis:
     host: clustercfg.test-memorydb.sytn5f.memorydb.ap-northeast-2.amazonaws.com
+    port: 6379
+    timeout: 5000

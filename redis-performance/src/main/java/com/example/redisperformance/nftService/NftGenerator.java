@@ -56,10 +56,4 @@ public class NftGenerator {
         );
     }
 
-//    private <T extends RObject> T redissonClientImplFactory(Class<T> clazz, String key) {
-//        if(clazz.isInstance(RQueue.class)) return (T) redissonClient.<String>getQueue(key, StringCodec.INSTANCE);
-//        else if(clazz.isInstance(RAtomicLong.class)) return (T) redissonClient.getAtomicLong(key);
-//        else if(clazz.isInstance(RList.class)) return (T) redissonClient.getList(key, StringCodec.INSTANCE);
-//        else throw new IllegalArgumentException();
-//    }
 }

@@ -1,6 +1,7 @@
 package com.example.redisperformance.nftService;
 
 import lombok.RequiredArgsConstructor;
+import org.redisson.Redisson;
 import org.redisson.api.*;
 import org.redisson.client.codec.StringCodec;
 import org.springframework.beans.factory.annotation.Value;
@@ -8,9 +9,9 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 @Service
-@RequiredArgsConstructor
+//@RequiredArgsConstructor
 public class NftGeneratorUtil {
-    private final RedissonClient redissonClient;
+    private final RedissonClient redissonClient = null;
 
     @Value("${nft.name}")
     private String nftName;

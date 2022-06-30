@@ -1,6 +1,0 @@
-spring:
-  redis:
-    lettuce:
-      pool:
-        max-active: 8 # default
-    port: 6379

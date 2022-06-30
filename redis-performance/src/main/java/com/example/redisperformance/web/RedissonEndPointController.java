@@ -10,9 +10,9 @@ import java.util.SplittableRandom;
 
 @RestController
 @RequestMapping("redisson-endpoint")
-@RequiredArgsConstructor
+//@RequiredArgsConstructor
 public class RedissonEndPointController {
-    private final RedissonClient redissonClient;
+    private final RedissonClient redissonClient = null;
 
     @GetMapping("get")
     public String get() {

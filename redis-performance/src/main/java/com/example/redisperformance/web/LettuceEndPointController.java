@@ -2,6 +2,7 @@ package com.example.redisperformance.web;
 
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.dao.DataAccessException;
 import org.springframework.data.redis.connection.RedisConnection;
 import org.springframework.data.redis.core.RedisCallback;
@@ -14,6 +15,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.SplittableRandom;
 
+@Slf4j
 @RestController
 @RequestMapping("lettuce-endpoint")
 @RequiredArgsConstructor
@@ -25,17 +27,22 @@ public class LettuceEndPointController {
         return "ok";
     }
 
-//    @GetMapping("save")
+    @GetMapping("save")
     public String save() {
-        var opsForHash = redisTemplate.opsForHash();
-        opsForHash.put(createId(), "name", "mskim-" + createId());
+        log.info("save");
+        var opsForValue = redisTemplate.opsForValue();
+        opsForValue.set("name", "mskim");
+
+//        var opsForHash = redisTemplate.opsForHash();
+//        opsForHash.put(createId(), "name", "mskim-" + createId());
         return "save";
     }
 
     @GetMapping("get")
     public String get() {
-        var opsForHash = redisTemplate.<String, String>opsForHash();
-        return opsForHash.get("kwd:" + createId(), "cpc");
+        log.info("get");
+        var opsForValue = redisTemplate.opsForValue();
+        return opsForValue.get("name");
     }
 
     @GetMapping("dummyInsert")
@@ -43,7 +50,7 @@ public class LettuceEndPointController {
         List<Object> results = redisTemplate.executePipelined(new RedisCallback<Object>() {
             @Override
             public Object doInRedis(RedisConnection connection) throws DataAccessException {
-                for (int i = 0; i < 1000000; i++) {
+                for (int i = 0; i < 10000; i++) {
                     var key = ("kwd:" + createId()).getBytes();
                     var hashes = Map.of(
                             "actYn".getBytes(), "true".getBytes(),
