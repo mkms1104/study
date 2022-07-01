@@ -5,6 +5,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.dao.DataAccessException;
 import org.springframework.data.redis.connection.RedisConnection;
+import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.core.RedisCallback;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,30 +20,33 @@ import java.util.SplittableRandom;
 @RestController
 @RequestMapping("lettuce-endpoint")
 @RequiredArgsConstructor
-public class LettuceEndPointController {
+public class SpringDataRedisEndPointController {
+    private final RedisConnectionFactory jedisConnectionFactory;
     private final RedisTemplate<String, String> redisTemplate;
 
-    @GetMapping("ok")
-    public String ok() {
-        return "ok";
+    @GetMapping("ping")
+    public String ping() {
+        jedisConnectionFactory.getConnection().ping();
+        return "ping";
     }
 
     @GetMapping("save")
     public String save() {
-        log.info("save");
         var opsForValue = redisTemplate.opsForValue();
-        opsForValue.set("name", "mskim");
-
-//        var opsForHash = redisTemplate.opsForHash();
-//        opsForHash.put(createId(), "name", "mskim-" + createId());
+        opsForValue.set("name:lettuce", "mskim");
         return "save";
     }
 
     @GetMapping("get")
     public String get() {
-        log.info("get");
         var opsForValue = redisTemplate.opsForValue();
-        return opsForValue.get("name");
+        return opsForValue.get("name:lettuce");
+    }
+
+    @GetMapping("getKeys")
+    public String getAll() {
+        redisTemplate.keys("*");
+        return "getKeys";
     }
 
     @GetMapping("dummyInsert")

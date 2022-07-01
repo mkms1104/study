@@ -1,6 +1,6 @@
 spring:
   profiles:
-    active: cloud
+    active: local
 
 management:
   endpoints:
@@ -11,8 +11,7 @@ management:
 logging:
   level:
     com.example.demo: debug
-    org.redisson : trace
-    io.lettuce: trace
+#    org.redisson : trace
 
 nft:
   name: scam
@@ -21,9 +20,9 @@ nft:
 
 spring:
   profiles: local
-
   redis:
     host: localhost
+    port: 6379
 
 ---
 
@@ -32,4 +31,3 @@ spring:
   redis:
     host: clustercfg.test-memorydb.sytn5f.memorydb.ap-northeast-2.amazonaws.com
     port: 6379
-    timeout: 5000

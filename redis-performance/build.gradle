@@ -23,7 +23,6 @@ dependencies {
     testAnnotationProcessor 'org.projectlombok:lombok'
     implementation 'org.apache.commons:commons-pool2:2.11.1'
     implementation 'org.redisson:redisson:3.17.4'
-//    implementation 'org.redisson:redisson-spring-boot-starter:3.17.3'
     implementation 'org.apache.commons:commons-lang3:3.12.0'
 }
 
