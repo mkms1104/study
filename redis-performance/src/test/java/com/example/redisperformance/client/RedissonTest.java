@@ -170,4 +170,11 @@ public class RedissonTest {
             redissonClient.getSet("mySet").readAll();
         });
     }
+
+    @Test
+    @DisplayName("")
+    public void writeThrough() {
+        var objectObjectMapOptions = MapOptions.defaults().writeMode(MapOptions.WriteMode.WRITE_THROUGH);
+
+    }
 }

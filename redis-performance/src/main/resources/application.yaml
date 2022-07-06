@@ -16,7 +16,7 @@ logging:
 nft:
   name: scam
 
----
+--- # 로컬 환경
 
 spring:
   profiles: local
@@ -24,7 +24,22 @@ spring:
     host: localhost
     port: 6379
 
----
+  datasource:
+    hikari:
+      driver-class-name: org.h2.Driver
+      jdbc-url: jdbc:h2:tcp://localhost/~/study
+      username: sa
+
+  jpa:
+    hibernate:
+      ddl-auto: create
+
+    properties:
+      hibernate:
+        show_sql: true
+        format_sql: true
+        
+--- # 배포 환경
 
 spring:
   profiles: cloud
