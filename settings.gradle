@@ -1,4 +1,4 @@
 rootProject.name = 'study'
 include('디자인패턴', '토비의스프링', 'effectiveJava')
-include('redis-performance', 'demo')
+include('demo')
 include('aws-sdk')
