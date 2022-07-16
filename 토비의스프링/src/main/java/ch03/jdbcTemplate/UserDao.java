@@ -1,4 +1,4 @@
-package ch03;
+package ch03.jdbcTemplate;
 
 import ch01.User;
 import org.springframework.jdbc.core.JdbcTemplate;

@@ -10,7 +10,7 @@ repositories {
 }
 
 dependencies {
-    implementation 'com.h2database:h2:2.1.210'
+    implementation 'com.h2database:h2:2.1.214'
     implementation 'org.springframework:spring-core:5.3.10'
     implementation 'org.springframework:spring-context:5.3.10'
     implementation 'org.springframework:spring-beans:5.3.10'
