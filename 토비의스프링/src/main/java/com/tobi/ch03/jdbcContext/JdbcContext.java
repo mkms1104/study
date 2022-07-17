@@ -1,6 +1,6 @@
-package ch03.jdbcContext;
+package com.tobi.ch03.jdbcContext;
 
-import ch03.strategy.StatementStrategy;
+import com.tobi.ch03.strategy.StatementStrategy;
 
 import javax.sql.DataSource;
 import java.sql.Connection;

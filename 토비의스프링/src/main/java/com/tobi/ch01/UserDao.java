@@ -1,4 +1,6 @@
-package ch01;
+package com.tobi.ch01;
+
+import com.tobi.User;
 
 import javax.sql.DataSource;
 import java.sql.*;

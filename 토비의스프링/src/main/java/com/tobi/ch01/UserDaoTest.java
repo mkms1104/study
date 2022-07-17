@@ -1,5 +1,6 @@
-package ch01;
+package com.tobi.ch01;
 
+import com.tobi.User;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 

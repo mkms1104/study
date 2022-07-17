@@ -1,4 +1,4 @@
-package ch03.templateMethod;
+package com.tobi.ch03.templateMethod;
 
 import javax.sql.DataSource;
 import java.sql.Connection;

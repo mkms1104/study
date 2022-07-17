@@ -1,4 +1,4 @@
-package ch01;
+package com.tobi.ch01;
 
 import org.h2.Driver;
 import org.springframework.context.annotation.Bean;

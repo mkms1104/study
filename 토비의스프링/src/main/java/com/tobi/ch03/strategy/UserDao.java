@@ -1,11 +1,8 @@
-package ch03.strategy;
+package com.tobi.ch03.strategy;
 
-import ch01.User;
-import ch03.jdbcContext.JdbcContext;
+import com.tobi.User;
+import com.tobi.ch03.jdbcContext.JdbcContext;
 
-import javax.sql.DataSource;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class UserDao {

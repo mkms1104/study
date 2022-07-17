@@ -1,4 +1,4 @@
-package ch03.strategy;
+package com.tobi.ch03.strategy;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
