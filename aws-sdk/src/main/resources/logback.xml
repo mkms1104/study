@@ -1,0 +1,29 @@
+<configuration packagingData="true">
+
+    <!-- Register the shutdown hook to allow logback to cleanly stop appenders -->
+    <!-- this is strongly recommend when using AwsLogsAppender in async mode, -->
+    <!-- to allow the queue to flush on exit -->
+    <shutdownHook class="ch.qos.logback.core.hook.DelayingShutdownHook"/>
+
+    <!-- Timestamp used into the Log Stream Name -->
+    <timestamp key="timestamp" datePattern="yyyy년-MM월-dd일-HH시"/>
+
+    <!-- default log pattern (오버라이딩 필요할 경우 appender 내부에서 직접 선언할 것) -->
+    <property name="LOG_PATTERN" value="[%d{yyyy-MM-dd HH:mm:ss}] [%thread] %level %logger{15} %msg%n"/>
+
+    <springProfile name="!prod">
+        <include resource="console-appender.xml"/>
+        <root level="INFO">
+            <appender-ref ref="STDOUT"/>
+        </root>
+    </springProfile>
+
+    <!-- prod 환경에서만 cloudWatch 로그 적재 -->
+    <springProfile name="qa | prod">
+        <include resource="aws-cloudWatch-appender.xml"/>
+        <root level="INFO">
+            <appender-ref ref="ASYNC_AWS_LOGS"/>
+        </root>
+    </springProfile>
+
+</configuration>
