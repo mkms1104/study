@@ -10,7 +10,7 @@
 
     <bean id="datasource" class="org.springframework.jdbc.datasource.SimpleDriverDataSource">
         <property name="driverClass" value="org.h2.Driver"/>
-        <property name="url" value="jdbc:h2:tcp://localhost/~/demo"/>
+        <property name="url" value="jdbc:h2:tcp://localhost/~/study"/>
         <property name="username" value="sa"/>
     </bean>
 
@@ -28,11 +28,6 @@
         <property name="userDao" ref="userDao"/>
     </bean>
 
-    <bean id="userService" class="com.tobi.ch06.UserServiceTx">
-        <property name="transactionManager" ref="transactionManager"/>
-        <property name="userService" ref="userServiceImpl"/>
-    </bean>
-
     <bean id="userServiceImpl" class="com.tobi.ch06.UserServiceImpl">
         <property name="userDao" ref="userDao"/>
         <property name="userLevelUpgradedPolicy" ref="userLevelUpgradedPolicy" />
@@ -40,5 +35,31 @@
 
     <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
         <property name="dataSource" ref="datasource"/>
+    </bean>
+
+    <bean id="transactionAdvice" class="com.tobi.ch06.TransactionAdvice">
+        <property name="transactionManager" ref="transactionManager"/>
+    </bean>
+
+    <bean id="transactionPointCut" class="org.springframework.aop.support.NameMatchMethodPointcut">
+        <property name="mappedName" value="upgrade*"/>
+    </bean>
+
+    <bean id="transactionAdvisor" class="org.springframework.aop.support.DefaultPointcutAdvisor">
+        <property name="advice" ref="transactionAdvice"/>
+        <property name="pointcut" ref="transactionPointCut"/>
+    </bean>
+
+    <bean id="userService" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="target" ref="userServiceImpl"/>
+        <property name="interceptorNames">
+            <list>
+                <value>transactionAdvisor</value>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="message" class="com.tobi.ch06.factoryBean.MessageFactoryBean">
+        <property name="text" value="Factory Bean"/>
     </bean>
 </beans>

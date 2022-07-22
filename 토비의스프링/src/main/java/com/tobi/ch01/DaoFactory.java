@@ -19,7 +19,7 @@ public class DaoFactory {
     public DataSource dataSource() {
         SimpleDriverDataSource dataSource = new SimpleDriverDataSource();
         dataSource.setDriverClass(Driver.class);
-        dataSource.setUrl("jdbc:h2:tcp://localhost/~/demo");
+        dataSource.setUrl("jdbc:h2:tcp://localhost/~/study");
 //        dataSource.setUrl("jdbc:h2:mem:demo;DB_CLOSE_DELAY=-1;DATABASE_TO_UPPER=false;INIT=RUNSCRIPT FROM 'classpath:schema.sql'"); // In-memory
 //        dataSource.setUrl("jdbc:h2:~/demo"); // embedded
         dataSource.setUsername("sa");

@@ -5,27 +5,30 @@ import com.tobi.ch05.DefaultUserLevelUpgrade;
 import com.tobi.ch05.Level;
 import com.tobi.ch06.UserService;
 import com.tobi.ch06.UserServiceImpl;
-import com.tobi.ch06.UserServiceTx;
-import org.junit.Before;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.springframework.aop.framework.ProxyFactoryBean;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.transaction.PlatformTransactionManager;
 
-import javax.sql.DataSource;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(locations = "/test-applicationContext.xml")
 public class UserServiceTest {
+
+    @Autowired
+    private ApplicationContext context;
 
     @Autowired
     private UserService userService;
@@ -81,9 +84,21 @@ public class UserServiceTest {
         userServiceImpl.setUserLevelUpgradedPolicy(testDefaultUserLevelUpgrade);
         userServiceImpl.setUserDao(userDao);
 
-        UserServiceTx userService = new UserServiceTx();
-        userService.setTransactionManager(transactionManager);
-        userService.setUserService(userServiceImpl);
+//        UserServiceTx userService = new UserServiceTx();
+//        userService.setTransactionManager(transactionManager);
+//        userService.setUserService(userServiceImpl);
+
+//        TransactionHandler transactionHandler = new TransactionHandler();
+//        transactionHandler.setTarget(userServiceImpl);
+//        transactionHandler.setTransactionManager(transactionManager);
+//        transactionHandler.setPattern("upgradeLevels");
+//        transactionHandler.setPattern("1234upgradeLevels");
+
+//        UserService userService = (UserService) Proxy.newProxyInstance(getClass().getClassLoader(), new Class[] { UserService.class }, transactionHandler);
+
+        ProxyFactoryBean proxyFactoryBean = context.getBean("&userService", ProxyFactoryBean.class);
+        proxyFactoryBean.setTarget(userServiceImpl);
+        UserService userService = (UserService) proxyFactoryBean.getObject();
 
         // given
         for(User user : users) userDao.add(user);
