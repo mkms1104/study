@@ -27,7 +27,7 @@
         <property name="userDao" ref="userDao"/>
     </bean>
 
-    <bean id="userServiceImpl" class="com.tobi.ch06.UserServiceImpl">
+    <bean id="userService" class="com.tobi.ch06.UserServiceImpl">
         <property name="userDao" ref="userDao"/>
         <property name="userLevelUpgradedPolicy" ref="userLevelUpgradedPolicy" />
     </bean>
@@ -40,8 +40,17 @@
         <property name="transactionManager" ref="transactionManager"/>
     </bean>
 
-    <bean id="transactionPointCut" class="org.springframework.aop.support.NameMatchMethodPointcut">
-        <property name="mappedName" value="upgrade*"/>
+<!--    <bean id="transactionPointCut" class="org.springframework.aop.support.NameMatchMethodPointcut">-->
+<!--        <property name="mappedName" value="upgrade*"/>-->
+<!--    </bean>-->
+
+<!--    <bean id="transactionPointCut" class="com.tobi.ch06.NamedMatchClassMethodPointcut">-->
+<!--        <property name="mappedClassName" value="*ServiceImpl"/>-->
+<!--        <property name="mappedName" value="upgrade*" />-->
+<!--    </bean>-->
+
+    <bean id="transactionPointCut" class="org.springframework.aop.aspectj.AspectJExpressionPointcut">
+        <property name="expression" value="excution(* *..*ServiceImpl.upgrade*(..))" />
     </bean>
 
     <bean id="transactionAdvisor" class="org.springframework.aop.support.DefaultPointcutAdvisor">
@@ -49,36 +58,38 @@
         <property name="pointcut" ref="transactionPointCut"/>
     </bean>
 
-    <bean id="userService" class="org.springframework.aop.framework.ProxyFactoryBean">
-        <property name="target" ref="userServiceImpl"/>
-        <property name="interceptorNames">
-            <list>
-                <value>transactionAdvisor</value>
-            </list>
-        </property>
-    </bean>
+<!--    <bean id="userService" class="org.springframework.aop.framework.ProxyFactoryBean">-->
+<!--        <property name="target" ref="userServiceImpl"/>-->
+<!--        <property name="interceptorNames">-->
+<!--            <list>-->
+<!--                <value>transactionAdvisor</value>-->
+<!--            </list>-->
+<!--        </property>-->
+<!--    </bean>-->
 
     <bean id="message" class="com.tobi.ch06.factoryBean.MessageFactoryBean">
         <property name="text" value="Factory Bean"/>
     </bean>
 
+    <bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator" />
 
-    <bean id="transactionAdvice" class="org.springframework.transaction.interceptor.TransactionInterceptor">
-        <property name="transactionManager" ref="transactionManager"/>
-        <property name="transactionAttributes">
-            <props>
-                <prop key="get*">PROPAGATION_REQUIRED, readOnly, timeout_30</prop>
-                <prop key="upgrade*">PROPAGATION_REQUIRES_NEW, ISOLATION_SERIALIZABLE</prop>
-                <prop key="*">PROPAGATION_REQUIRED</prop>
-            </props>
-        </property>
-    </bean>
 
-    <tx:advice id="transactionAdvice" transaction-manager="transactionManager">
-        <tx:attributes>
-            <tx:method name="get*" propagation="REQUIRED" read-only="true" timeout="30" isolation="SERIALIZABLE"/>
-            <tx:method name="upgrade*" propagation="REQUIRES_NEW" isolation="SERIALIZABLE"/>
-            <tx:method name="*" propagation="REQUIRED"/>
-        </tx:attributes>
-    </tx:advice>
+<!--    <bean id="transactionAdvice" class="org.springframework.transaction.interceptor.TransactionInterceptor">-->
+<!--        <property name="transactionManager" ref="transactionManager"/>-->
+<!--        <property name="transactionAttributes">-->
+<!--            <props>-->
+<!--                <prop key="get*">PROPAGATION_REQUIRED, readOnly, timeout_30</prop>-->
+<!--                <prop key="upgrade*">PROPAGATION_REQUIRES_NEW, ISOLATION_SERIALIZABLE</prop>-->
+<!--                <prop key="*">PROPAGATION_REQUIRED</prop>-->
+<!--            </props>-->
+<!--        </property>-->
+<!--    </bean>-->
+
+<!--    <tx:advice id="transactionAdvice" transaction-manager="transactionManager">-->
+<!--        <tx:attributes>-->
+<!--            <tx:method name="get*" propagation="REQUIRED" read-only="true" timeout="30" isolation="SERIALIZABLE"/>-->
+<!--            <tx:method name="upgrade*" propagation="REQUIRES_NEW" isolation="SERIALIZABLE"/>-->
+<!--            <tx:method name="*" propagation="REQUIRED"/>-->
+<!--        </tx:attributes>-->
+<!--    </tx:advice>-->
 </beans>
