@@ -1,4 +1,4 @@
 rootProject.name = 'study'
-include('디자인패턴', '토비의스프링', 'effectiveJava')
+include('tobi', 'effectiveJava', 'jpashop')
 include('temp')
 include('aws-sdk')
