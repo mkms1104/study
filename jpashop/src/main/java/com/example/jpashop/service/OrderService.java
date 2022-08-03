@@ -43,6 +43,6 @@ public class OrderService {
     }
 
     public List<Order> findOrders(OrderSearch orderSearch) {
-        return null;
+        return orderRepository.findAllByString(orderSearch);
     }
 }

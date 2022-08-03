@@ -1,6 +1,7 @@
 package com.example.jpashop.domain;
 
 import com.example.jpashop.domain.item.Item;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 import org.aspectj.weaver.ast.Or;
