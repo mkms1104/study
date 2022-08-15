@@ -1,14 +1,3 @@
-plugins {
-    id 'java'
-}
-
-group 'com.tobi'
-version 'unspecified'
-
-repositories {
-    mavenCentral()
-}
-
 dependencies {
     implementation 'com.h2database:h2:2.1.214'
     implementation 'org.springframework:spring-core:5.3.10'
@@ -23,8 +12,3 @@ dependencies {
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.2'
     runtimeOnly 'org.aspectj:aspectjweaver:1.9.9.1'
 }
-
-test {
-    useJUnitPlatform()
-}
-

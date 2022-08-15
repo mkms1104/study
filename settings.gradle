@@ -1,4 +1,5 @@
 rootProject.name = 'study'
 include('tobi', 'effectiveJava', 'jpashop', 'queryDsl')
-include('temp', 'algorithm')
+include('etc-module')
+include('algorithm')
 include('aws-sdk')
