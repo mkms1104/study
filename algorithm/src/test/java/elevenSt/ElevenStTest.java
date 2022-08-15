@@ -1,11 +1,11 @@
-package com.example.temp.codingTest;
+package elevenSt;
 
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 
 // 11번가 코딩 테스트
-public class ElevenSt {
+public class ElevenStTest {
 
     @Test
     public void solution01() {
