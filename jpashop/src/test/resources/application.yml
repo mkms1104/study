@@ -1,18 +1,18 @@
 spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/study?serverTimezone=UTC&characterEncoding=UTF-8
+    username: root
+    password: 1234
+    driver-class-name: com.mysql.cj.jdbc.Driver
 
-### 스프링 부트는 기본적으로 h2 인메모리 방식으로 로드하므로 아무 설정이 없어도 된다.
-#  datasource:
-#    url: jdbc:h2:mem:test # 인메모리 모드
-#    username: sa
-#    driver-class-name: org.h2.Driver
-
-#  jpa:
-#    hibernate:
-#      ddl-auto: create
-#    properties:
-#      hibernate:
-#        dialect: org.hibernate.dialect.H2Dialect
-#        format_sql: true
+  jpa:
+    hibernate:
+      ddl-auto: create
+    properties:
+      hibernate:
+        format_sql: true
+        show_sql: false
+        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
 
 logging:
   level:

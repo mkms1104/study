@@ -42,7 +42,7 @@ public class AblyTest {
         String[] letter = sentence.split(" ");
         for(String s : letter) {
             Integer count = frequencyCounter.getOrDefault(s.chars().sum(), 0); // prevent null point
-            if(count == 2) number++;
+            if(count >= 2) number++;
         }
         System.out.println(number);
     }
