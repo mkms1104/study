@@ -1,8 +1,8 @@
 rootProject.name = 'study'
-include('tobi', 'effectiveJava', 'jpashop', 'queryDsl')
-include('etc-module')
-include('algorithm')
 include('aws-sdk')
-include('hello-kotilin')
+include('designPattern')
+include('jpashop')
 include('persistence')
+include('queryDsl')
+include('tobi')
 
